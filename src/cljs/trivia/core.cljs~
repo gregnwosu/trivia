@@ -1,0 +1,17 @@
+(ns trivia.core
+  (:require [reagent.core :as reagent]))
+
+
+(defn simple-component []
+  [:div
+   [:p "I am a component!"]
+   [:p.someclass
+    "I have " [:strong "bold"]
+    [:span {:style {:color "red"}} " and red "] "text."]])
+
+(defn mount-root []
+  (reagent/render [:h1 "Hello"]
+                  (.getElementById js/document "app")))
+
+(defn ^:export init []
+  (mount-root))
