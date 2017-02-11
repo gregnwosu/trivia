@@ -9,7 +9,7 @@ before_script:
 
 test:
   script:
-    - lein do uberjar,test
+    - lein do uberjar, test
   artifacts:
     paths:
       - target/uberjar/*-standalone.jar
