@@ -37,3 +37,6 @@
 
 (defn ^:export init []
   (mount-root))
+
+
+;; stupid function to test
