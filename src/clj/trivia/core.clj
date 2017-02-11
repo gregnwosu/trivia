@@ -1,4 +1,5 @@
-(ns trivia.core)
+(ns trivia.core
+  (:gen-class))
 
 
 (defn add-number

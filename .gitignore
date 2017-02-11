@@ -4,3 +4,4 @@ resources/public/js/compiled/*
 /.cljs_rhino_repl/cljs/core.js
 /.cljs_rhino_repl/cljs/core.js.map
 /.nrepl-port
+/out/cljs/core.cljs
