@@ -33,6 +33,7 @@
                                    :asset-path "js/compiled/out"
                                    :source-map-timestamp true}}
                        ;; necessary to run lein doo phanntom test
+                       ;; from https://github.com/bensu/doo
                        {:id "test"
                         :source-paths ["src/cljs" "test/cljs"]
                         :figwheel {:on-jsload "trivia.core/mount-root"}
