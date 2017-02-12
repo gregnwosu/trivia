@@ -1,6 +1,12 @@
 (ns trivia.core
-  (:require [reagent.core :as reagent]
+  (:require [re-frame.core :as re-frame]
+            [reagent.core :as reagent]
+            [trivia.events :as events]
+            [trivia.subs :as subs]
             [trivia.views :as views]))
+
+;; Note we need to INCLUDE all of our sub modules in core
+
 ;; basic set up from https://www.youtube.com/watch?v=9sVGy0IovH8
 ;;tutorial
 ;; https://github.com/fasiha/fullstack-cljs-tutorial
@@ -36,6 +42,8 @@
                    (.getElementById js/document "app")))
 
 (defn ^:export init []
+  ;; manually fire an event
+  (re-frame/dispatch-sync [:initialise-db])
   (mount-root))
 
 

@@ -6,3 +6,8 @@ docker-compose build
 docker-compose up
 
 #+END_SRC
+** Bower
+** htmltohiccup
+** Boostrappers
+** react developer tools
+https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
