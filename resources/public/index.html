@@ -1,8 +1,14 @@
 <!doctype html>
+<!--  we use bower to install bootstrap  -->
+<!-- sudo npm install -g bower -->
+<!-- bower init -->
+<!-- need to create a .bowerrc in project route and point "directory" to "resources/public/vendor -->
+<!-- bower install bootstrap --save -->
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="resources/public/vendor/bootstrap/dist/css/bootstrap.css"/>
   </head>
   <body>
     <h1>Hello, World </h1>
@@ -10,6 +16,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/compiled/app.js"></script>
-    <script>trivia.core.init();</script>
+    <script>window.onload = function {
+         trivia.core.init();
+     }</script>
   </body>
 </html>

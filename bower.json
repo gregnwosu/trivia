@@ -1,0 +1,21 @@
+{
+  "name": "trivia",
+  "homepage": "https://github.com/gregnwosu/trivia",
+  "authors": [
+    "greg <greg.nwosu@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

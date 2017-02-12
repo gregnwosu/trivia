@@ -1,0 +1,8 @@
+* Trivia
+** Docker
+bring up services
+#+BEGIN_SRC bash
+docker-compose build
+docker-compose up
+
+#+END_SRC

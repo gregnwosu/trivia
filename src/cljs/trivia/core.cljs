@@ -1,5 +1,6 @@
 (ns trivia.core
-  (:require [reagent.core :as reagent]))
+  (:require [reagent.core :as reagent]
+            [trivia.views :as views]))
 ;; basic set up from https://www.youtube.com/watch?v=9sVGy0IovH8
 ;;tutorial
 ;; https://github.com/fasiha/fullstack-cljs-tutorial
@@ -19,7 +20,7 @@
 ;; if you use developer tools and browse http://getbootstrap.com/examples/jumbotron/
 ;; add a class to a hiccup component via
 ;; e.g.  <div class=jumbotron/> =  [:div.jumbotron ]
-
+;; https://github.com/Day8/re-frame/tree/master/examples/todomvc
 (def click-count (reagent/atom 0))
 
 (defn counting-component []
@@ -30,10 +31,9 @@
                         :on-click #(swap! click-count inc)}]])
 
 (defn mount-root []
-  (reagent/render
-   [counting-component]
-   ;;[:h1 "Hello"]
-   (.getElementById js/document "app")))
+  (reagent/render  (views/login-panel)
+                   ;;[:h1 "Hello"]
+                   (.getElementById js/document "app")))
 
 (defn ^:export init []
   (mount-root))
