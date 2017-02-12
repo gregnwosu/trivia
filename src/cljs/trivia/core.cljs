@@ -37,9 +37,10 @@
                         :on-click #(swap! click-count inc)}]])
 
 (defn mount-root []
-  (reagent/render  (views/login-panel)
-                   ;;[:h1 "Hello"]
-                   (.getElementById js/document "app")))
+  (let [active-page (re-frame/subscribe [:active-page]) ]
+    (reagent/render  (views/login-panel)
+                     ;;[:h1 "Hello"]
+                     (.getElementById js/document "app"))))
 
 (defn ^:export init []
   ;; manually fire an event

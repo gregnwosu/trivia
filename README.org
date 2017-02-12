@@ -11,3 +11,32 @@ docker-compose up
 ** Boostrappers
 ** react developer tools
 https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
+** Navigation
+done using multimethods
+https://github.com/Day8/re-frame/blob/master/docs/Navigation.md
+
+#+BEGIN_EXAMPLE clojure
+(re-frame/reg-sub
+  :active-panel
+  (fn [db _]
+    (:active-panel db)))
+
+(defn panel1
+ []
+ [:div  {:on-click #(re-frame/dispatch [:set-active-panel :panel2])}
+        "Here" ])
+
+(defn panel2
+ []
+ [:div "There"])
+
+(defn high-level-view
+  []
+  (let [active  (re-frame/subscribe [:active-panel])]
+    (fn []
+      [:div
+       [:div.title   "Heading"]
+       (condp = @active                ;; or you could look up in a map
+         :panel1   [panel1]
+         :panel2   [panel2])])))
+#+END_EXAMPLE

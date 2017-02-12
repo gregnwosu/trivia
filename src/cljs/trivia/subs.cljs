@@ -7,3 +7,8 @@
  (fn [db _]
    (:name db)))
 ;; extract the name from the db for the subscription
+
+
+(re-frame/reg-sub
+ :active-page
+ (fn [db _] (:active-page db)))
