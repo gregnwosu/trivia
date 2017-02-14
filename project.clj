@@ -19,10 +19,10 @@
 
   :figwheel {:css-dirs ["resources/public/css"]}
   :profiles {:uberjar{:aot :all}
-             :dev {:dependencies [[figwheel-sidecar "0.5.4-7"]
+             :dev {:dependencies [[figwheel-sidecar "0.5.8"]
                                   [com.cemerick/piggieback "0.2.1"]
-                                  [binaryage/devtools "0.8.0"]]
-                   :plugins [[lein-figwheel "0.5.4-7"]
+                                  [binaryage/devtools "0.8.3"]]
+                   :plugins [[lein-figwheel "0.5.7"]
                              [lein-doo "0.1.7"]]}}
 
   :cljsbuild {:builds [{:id "dev"
@@ -33,7 +33,7 @@
                                    :output-dir "resources/public/js/compiled/out"
                                    :asset-path "js/compiled/out"
                                    :source-map-timestamp true}}
-                       ;; necessary to run lein doo phanntom test
+                       ;; necessary to run lein doo phantom test
                        ;; from https://github.com/bensu/doo
                        {:id "test"
                         :source-paths ["src/cljs" "test/cljs"]
@@ -41,5 +41,11 @@
 
                         :compiler {:main trivia.runner
                                    :output-to "resources/public/js/compiled/test.js"
-                                   :asset-path "js/compiled/out"
+
                                    :optimizations :none}}]})
+
+
+;;consider
+;; re-frisk.core
+;; cljs.spec
+;;show.slides.views
