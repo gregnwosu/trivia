@@ -5,3 +5,8 @@ resources/public/js/compiled/*
 /.cljs_rhino_repl/cljs/core.js.map
 /.nrepl-port
 /out/cljs/core.cljs
+.cljs_rhino_repl
+out
+t
+tar
+target
