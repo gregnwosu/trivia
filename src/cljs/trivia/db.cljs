@@ -2,4 +2,5 @@
 
 
 (def default-value
-  {:name "Greg"})
+  {:name "Greg"
+   :active-page :login})

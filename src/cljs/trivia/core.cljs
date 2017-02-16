@@ -5,6 +5,9 @@
             [trivia.subs :as subs]
             [trivia.views :as views]))
 
+;;enable use of prn
+(enable-console-print!)
+
 ;; Note we need to INCLUDE all of our sub modules in core
 
 ;; basic set up from https://www.youtube.com/watch?v=9sVGy0IovH8
@@ -36,11 +39,34 @@
    [:input.btn-primary {:type "button" :value "Click me Boss!"
                         :on-click #(swap! click-count inc)}]])
 
+;; use clojure multimethods to override pages
+;; from https://github.com/Day8/re-frame/blob/master/docs/Navigation.md
+
+;; setup multimethods, override function called 'pages'
+(defmulti pages identity)
+;; define your pages         views/login-panel from views.cljs
+(defmethod pages :login []
+  [(views/login-panel)])
+(defmethod pages :create-game []
+  [:div "GAME!"])
+
+
+;; so now the function show-page takes a page name and dispatches on the multimethod pages above
+(defn show-page [page-name]
+  (prn "Show page" page-name)
+  (pages page-name))
+
+(defn main-page []
+  (let [active-page  (re-frame/subscribe [:active-page])]
+    (fn [] [:div
+           (show-page @active-page)])))
+;;; end multimethod technique for page dispatch
+
 (defn mount-root []
-  (let [active-page (re-frame/subscribe [:active-page]) ]
-    (reagent/render  (views/login-panel)
-                     ;;[:h1 "Hello"]
-                     (.getElementById js/document "app"))))
+
+  (reagent/render [main-page]
+                  ;;[:h1 "Hello"]
+                  (.getElementById js/document "app")))
 
 (defn ^:export init []
   ;; manually fire an event
