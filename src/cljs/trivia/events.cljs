@@ -5,12 +5,10 @@
 (re-frame/reg-event-fx
  :login
  (fn [db [event data]]
-   (prn "db is " db)
-   ;; note need to create new map i dont think it works to just update existing
-   (let [
-         new-map  {:db  (assoc (:db db) :name data) :dispatch [:login-success]}]
+   (let [new-map    {:db  (assoc (:db db) :name data) :dispatch [:login-success]} ]
      new-map
      )))
+
 
 
 
