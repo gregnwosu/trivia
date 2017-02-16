@@ -9,7 +9,7 @@
 (enable-console-print!)
 
 ;; Note we need to INCLUDE all of our sub modules in core
-
+;; for hacking javascript we have http://cljsjs.github.io/
 ;; basic set up from https://www.youtube.com/watch?v=9sVGy0IovH8
 ;;tutorial
 ;; https://github.com/fasiha/fullstack-cljs-tutorial
@@ -30,6 +30,8 @@
 ;; add a class to a hiccup component via
 ;; e.g.  <div class=jumbotron/> =  [:div.jumbotron ]
 ;; https://github.com/Day8/re-frame/tree/master/examples/todomvc
+
+;; HTML from bootsnip.com, in project 2 he seems to get it from http://www.initializr.com/
 (def click-count (reagent/atom 0))
 
 (defn counting-component []
@@ -48,7 +50,9 @@
 (defmethod pages :login []
   [(views/login-panel)])
 (defmethod pages :create-game []
-  [:div "GAME!"])
+
+  [:html [:body [:form.form-horizontal [:fieldset [:comment " Form Name "] [:legend "Form Name"] [:comment " Appended checkbox "] [:div.form-group [:label.col-md-4.control-label {:for "Greg"} "Appended Checkbox"] [:div.col-md-4 [:div.input-group [:input#Greg.form-control {:name "Greg" :type "text" :placeholder "placeholder"}] [:span.input-group-addon [:input {:type "checkbox"}]]] [:p.help-block "help"]]] [:comment " Button "] [:div.form-group [:label.col-md-4.control-label {:for "singlebutton"} "Single Button"] [:div.col-md-4 [:button#singlebutton.btn.btn-primary {:name "singlebutton"} "Button"]]]]]]]
+  )
 
 
 ;; so now the function show-page takes a page name and dispatches on the multimethod pages above

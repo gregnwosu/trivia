@@ -9,9 +9,6 @@
      new-map
      )))
 
-
-
-
 (re-frame/reg-event-db
  :name
  (fn [db [event data]]
