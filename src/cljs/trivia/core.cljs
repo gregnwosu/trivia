@@ -50,8 +50,30 @@
 (defmethod pages :login []
   [(views/login-panel)])
 (defmethod pages :create-game []
+  (console.log "Rendering create-game")
+  [:div   [:text "Hello"]]
 
-  [:html [:body [:form.form-horizontal [:fieldset [:comment " Form Name "] [:legend "Form Name"] [:comment " Appended checkbox "] [:div.form-group [:label.col-md-4.control-label {:for "Greg"} "Appended Checkbox"] [:div.col-md-4 [:div.input-group [:input#Greg.form-control {:name "Greg" :type "text" :placeholder "placeholder"}] [:span.input-group-addon [:input {:type "checkbox"}]]] [:p.help-block "help"]]] [:comment " Button "] [:div.form-group [:label.col-md-4.control-label {:for "singlebutton"} "Single Button"] [:div.col-md-4 [:button#singlebutton.btn.btn-primary {:name "singlebutton"} "Button"]]]]]]]
+  ;; [:div
+  ;;  [:form.form-horizontal
+  ;;   [:fieldset
+  ;;    [:comment " Form Name "]
+  ;;    [:legend "Form Name"]
+  ;;    [:comment " Appended checkbox "]
+
+  ;;    [:div.form-group
+  ;;     [:label.col-md-4.control-label {:for "Greg"} "Appended Checkbox"]
+  ;;     [:div.col-md-4
+  ;;      [:div.input-group
+  ;;       [:input#Greg.form-control {:name "Greg" :type "text" :placeholder "placeholder"}]
+  ;;       [:span.input-group-addon [:input {:type "checkbox"}]]]
+  ;;      [:p.help-block "help"]]]
+
+  ;;    [:comment " Button "]
+  ;;    [:div.form-group
+  ;;     [:label.col-md-4.control-label {:for "singlebutton"} "Single Button"]
+  ;;     [:div.col-md-4
+  ;;      [:button#singlebutton.btn.btn-primary {:name "singlebutton"} "Button"]]]]]]
+
   )
 
 
@@ -67,7 +89,6 @@
 ;;; end multimethod technique for page dispatch
 
 (defn mount-root []
-
   (reagent/render [main-page]
                   ;;[:h1 "Hello"]
                   (.getElementById js/document "app")))
