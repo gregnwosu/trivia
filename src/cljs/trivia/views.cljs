@@ -28,6 +28,7 @@
   []
   (fn []
     [:div
+     ;; this is a common component that we reuse , note that we can only use a form 1 componnent , ie direct hiccup as we cannot nest it again with a function via form2 hiccup commponent
      (navbar)
      [:div {:class "container"}
       [:div {:class "row"}
@@ -35,24 +36,36 @@
         [:div {:class "container"}
          [:h1 "Trivia Game!"]
          [:p "The most exciting trivia game"]
-         [:p [:a {:class "btn btn-primary btn-lg", :href "#", :role "button"} "Create a new game>>"]]]
-        ]]
-      ]]
+         [:p [:a {:class "btn btn-primary btn-lg", :href "#", :role "button", :on-click #(dispatch [:create-game])} "Create a new game>>"]]]
+        ]]]]))
+(defn ask-question
+  ""
+  []
+  (fn []
+    [:div {:class "container"}
+     [:div {:class "row"}
+      [:div {:class "col-md-8 col-md-offset-2"}
+       [:h1 "Game #4 - Questions 1/5"]]]
+     [:div {:class "row"}
+      [:div {:class "col-md-8 col-md-offset-2"}
+       [:div {:class "jumbotron"}
+        [:div {:class "container"}
+         [:h2 " a very exciting question is being asked here"]]]]]
+     [:div {:class "row"}
+      [:div {:class "col-md-8 col-md-offset-2"}
+       [:a {:class "btn btn-lg btn-primary btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       [:a {:class "btn btn-lg btn-success btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       [:a {:class "btn btn-lg btn-warning btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       [:a {:class "btn btn-lg btn-danger btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       ]]]
     )
 
   )
 
-
-
-
-
-
-
-
-(defn create-game-menu
+(defn create-menu
   ""
   []
-  (let [mythis "that" ]
+  (let [mythis "that"]
     (fn []
       [:div
        [:form.form-horizontal
@@ -75,9 +88,6 @@
           [:div.col-md-4
            [:button#singlebutton.btn.btn-primary {:name "singlebutton"} "Button"]]]]]])))
 
-
-
-
 ;; use clojure multimethods to override pages
 ;; from https://github.com/Day8/re-frame/blob/master/docs/Navigation.md
 
@@ -87,8 +97,9 @@
 (defmethod pages :login []
   [(login-panel)])
 (defmethod pages :create-game []
-  (console.log "Rendering create-game")
   [(create-game)])
+(defmethod pages :ask-question []
+  [(ask-question)])
 
 ;; so now the function show-page takes a page name and dispatches on the multimethod pages above
 (defn show-page [page-name]
