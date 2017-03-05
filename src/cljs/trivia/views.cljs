@@ -23,6 +23,37 @@
   (let [name (re-frame/subscribe [:name])]
     [:div.container [:comment " Static navbar "] [:nav.navbar.navbar-default [:div.container-fluid [:div.navbar-header [:button.navbar-toggle.collapsed {:type "button" :data-toggle "collapse" :data-target "#navbar" :aria-expanded "false" :aria-controls "navbar"} [:span.sr-only "Toggle navigation"] [:span.icon-bar] [:span.icon-bar] [:span.icon-bar]] [:a.navbar-brand {:href "#"} @name]] [:div#navbar.navbar-collapse.collapse [:ul.nav.navbar-nav [:li.active [:a {:href "#"} "Home"]] [:li [:a {:href "#"} "About"]] [:li [:a {:href "#"} "Contact"]] [:li.dropdown [:a.dropdown-toggle {:href "#" :data-toggle "dropdown" :role "button" :aria-haspopup "true" :aria-expanded "false"} "Dropdown " [:span.caret]] [:ul.dropdown-menu [:li [:a {:href "#"} "Action"]] [:li [:a {:href "#"} "Another action"]] [:li [:a {:href "#"} "Something else here"]] [:li.divider {:role "separator"}] [:li.dropdown-header "Nav header"] [:li [:a {:href "#"} "Separated link"]] [:li [:a {:href "#"} "One more separated link"]]]]] [:ul.nav.navbar-nav.navbar-right [:li.active [:a {:href "./"} "Default " [:span.sr-only "(current)"]]] [:li [:a {:href "../navbar-static-top/"} "Static top"]] [:li [:a {:href "../navbar-fixed-top/"} "Fixed top"]]]] ] ]]))
 
+
+(defn ask-question ""
+  []
+  ;; note we subscribe to an atom we only need to do this once
+
+  ;; (let [question (re-frame/subscribe [:current-question])]
+  (prn (str "some stuff ********************************    >> ************************************************" "boo"))
+  (fn []
+    [:div {:class "container"}
+     [:div {:class "row"}
+      [:div {:class "col-md-8 col-md-offset-2"}
+       [:h1 "Just a question"]]]
+     [:div {:class "row"}
+      [:div {:class "col-md-8 col-md-offset-2"}
+       [:div {:class "jumbotron"}
+        [:div {:class "container text-center"}
+         [:h2 "boo"
+          ;;(:question @question)
+          ]]]]]
+     [:div {:class "row"}
+      [:div {:class "col-md-8 col-md-offset-2"}
+
+       ;;         (map #(prn %) (:answers @question))
+       [:a {:class "btn btn-lg btn-primary btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       [:a {:class "btn btn-lg btn-success btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       [:a {:class "btn btn-lg btn-warning btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       [:a {:class "btn btn-lg btn-danger btn-block", :href "#", :role "button"} "A) Yes I do!"]
+       ]]]))
+  ;;)
+
+
 (defn create-game
   ""
   []
@@ -36,29 +67,9 @@
         [:div {:class "container"}
          [:h1 "Trivia Game!"]
          [:p "The most exciting trivia game"]
-         [:p [:a {:class "btn btn-primary btn-lg", :href "#", :role "button", :on-click #(dispatch [:active-page :ask-question])} "Create a new game >>"]]]
+         [:p [:a
+              {:class "btn btn-primary btn-lg", :href "#", :role "button", :on-click #(dispatch [:create-game])} "Create a new game >>"]]]
         ]]]]))
-
-(defn ask-question
-  ""
-  []
-  (fn []
-    [:div {:class "container"}
-     [:div {:class "row"}
-      [:div {:class "col-md-8 col-md-offset-2"}
-       [:h1 "Game #4 - Questions 1/5"]]]
-     [:div {:class "row"}
-      [:div {:class "col-md-8 col-md-offset-2"}
-       [:div {:class "jumbotron"}
-        [:div {:class "container"}
-         [:h2 " a very exciting question is being asked here"]]]]]
-     [:div {:class "row"}
-      [:div {:class "col-md-8 col-md-offset-2"}
-       [:a {:class "btn btn-lg btn-primary btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       [:a {:class "btn btn-lg btn-success btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       [:a {:class "btn btn-lg btn-warning btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       [:a {:class "btn btn-lg btn-danger btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       ]]]))
 
 (defn create-menu
   ""
@@ -96,8 +107,7 @@
   [(login-panel)])
 (defmethod pages :create-game []
   [(create-game)])
-(defmethod pages :ask-question []
-  [(ask-question)])
+(defmethod pages :ask-question [] [(ask-question)])
 
 
 

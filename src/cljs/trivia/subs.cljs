@@ -14,3 +14,9 @@
 (re-frame/reg-sub
  :active-page
  (fn [db _] (:active-page db)))
+
+
+(re-frame/reg-sub
+ :current-question
+ (fn [db _]
+   (:current-question db)))
