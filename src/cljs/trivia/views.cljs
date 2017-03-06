@@ -23,35 +23,46 @@
   (let [name (re-frame/subscribe [:name])]
     [:div.container [:comment " Static navbar "] [:nav.navbar.navbar-default [:div.container-fluid [:div.navbar-header [:button.navbar-toggle.collapsed {:type "button" :data-toggle "collapse" :data-target "#navbar" :aria-expanded "false" :aria-controls "navbar"} [:span.sr-only "Toggle navigation"] [:span.icon-bar] [:span.icon-bar] [:span.icon-bar]] [:a.navbar-brand {:href "#"} @name]] [:div#navbar.navbar-collapse.collapse [:ul.nav.navbar-nav [:li.active [:a {:href "#"} "Home"]] [:li [:a {:href "#"} "About"]] [:li [:a {:href "#"} "Contact"]] [:li.dropdown [:a.dropdown-toggle {:href "#" :data-toggle "dropdown" :role "button" :aria-haspopup "true" :aria-expanded "false"} "Dropdown " [:span.caret]] [:ul.dropdown-menu [:li [:a {:href "#"} "Action"]] [:li [:a {:href "#"} "Another action"]] [:li [:a {:href "#"} "Something else here"]] [:li.divider {:role "separator"}] [:li.dropdown-header "Nav header"] [:li [:a {:href "#"} "Separated link"]] [:li [:a {:href "#"} "One more separated link"]]]]] [:ul.nav.navbar-nav.navbar-right [:li.active [:a {:href "./"} "Default " [:span.sr-only "(current)"]]] [:li [:a {:href "../navbar-static-top/"} "Static top"]] [:li [:a {:href "../navbar-fixed-top/"} "Fixed top"]]]] ] ]]))
 
+(defn check-answer
+  ""
+  [answer]
+  )
+
+
+
+(defn create-answer
+  ""
+  [answer]
+  ;;need a unique key for each component in the sequence - key is used to sort and identifu rows
+  ^{:key (:answer answer)}
+  [:a {:class "btn btn-lg btn-default btn-block", :href "#", :role "button" :on-click #(js/alert (:correct answer))} (:answer answer)])
 
 (defn ask-question ""
   []
-  ;; note we subscribe to an atom we only need to do this once
+  ;; note we subscribe to an atom reframe  only does this once as the let is outside the lambda
+  (let [question (re-frame/subscribe [:current-question])]
+    (prn (str "some stuff ********************************    >> ************************************************" "boo"))
+    (fn []
+      [:div {:class "container"}
+       [:div {:class "row"}
+        [:div {:class "col-md-8 col-md-offset-2"}
+         [:h1 "Just a question"]]]
+       [:div {:class "row"}
+        [:div {:class "col-md-8 col-md-offset-2"}
+         [:div {:class "jumbotron"}
+          [:div {:class "container text-center"}
+           [:h2 (:question @question)
+            ]]]]]
+       [:div {:class "row"}
+        [:div {:class "col-md-8 col-md-offset-2"}
 
-  ;; (let [question (re-frame/subscribe [:current-question])]
-  (prn (str "some stuff ********************************    >> ************************************************" "boo"))
-  (fn []
-    [:div {:class "container"}
-     [:div {:class "row"}
-      [:div {:class "col-md-8 col-md-offset-2"}
-       [:h1 "Just a question"]]]
-     [:div {:class "row"}
-      [:div {:class "col-md-8 col-md-offset-2"}
-       [:div {:class "jumbotron"}
-        [:div {:class "container text-center"}
-         [:h2 "boo"
-          ;;(:question @question)
-          ]]]]]
-     [:div {:class "row"}
-      [:div {:class "col-md-8 col-md-offset-2"}
+         (map create-answer (:answers @question))
 
-       ;;         (map #(prn %) (:answers @question))
-       [:a {:class "btn btn-lg btn-primary btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       [:a {:class "btn btn-lg btn-success btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       [:a {:class "btn btn-lg btn-warning btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       [:a {:class "btn btn-lg btn-danger btn-block", :href "#", :role "button"} "A) Yes I do!"]
-       ]]]))
-  ;;)
+
+         [:a {:class "btn btn-lg btn-warning btn-block", :href "#", :role "button"} "A) Yes I do!"]
+         [:a {:class "btn btn-lg btn-danger btn-block", :href "#", :role "button"} "A) Yes I do!"]
+         ]]]))
+  )
 
 
 (defn create-game

@@ -18,7 +18,7 @@
  (fn [db [event data]]
    (assoc db :active-page data)))
 
-
+;; dispatches are side effects, anything that is not a pure functional return is a side effct and thus needs an fx event handler
 (re-frame/reg-event-fx
  :login
  (fn [cofx [event data]]
